@@ -1,4 +1,16 @@
 language: java
 jdk: oraclejdk9
 cache:
-  directories: ~/.m2/repository
+  directories: "~/.m2/repository"
+env:
+  global:
+  - JACOCO_SOURCE_PATH=src/main/java
+  - secure: "gzyqKloO8yCW35tbsjMmt+ApwHYA8t8tlhjkYaYTnhLelJ26qxatv//84DihuBPsj4S8gmn/xCxvF2sFh/GRCPnMD+nLa2Oa3JVb9x4yc+l2p8NJklmo0zd/B8/Dc0M1X3AAxujBI0sC7YSz/wczH/3srMVH4MYTr4BA5spgToW6q+knlDSj8nfap2zufMT3DmeR6+1IGH+bnpteqiMNbyzKmKA2FKPrMvkQXOERu7WETIC3WTQi/nTBHAx3jnBH0O5LPgjaq0BJE5LyCR942x3oIJqfJlnpVACUBm36wQHrTe0CxnpNMGols6uyJSACzblHybUiiArwxW4TorDfDe+1HTXYV4JTq3Pv5L95NtKMbM4BY2Y3k51nJo2j5FYzFPQBfxu04kt2G7r0sm923M0pQN6zYKyksCwC6+1795xzWC5O4L3Yon7jHhZ9Kx8P1U1lLBxFS8/9tyY6y58QgmY8cqFl04HcQSQy5xQbFXYMooDn1DxqZJLCQFgA1ddZAaq0J79fUjiDg3FDL9okeqNp4plOsDMtl+ak9wD7Cz4jdksjhmwhSwAawsATQxvSkcq7W0riF+2bJ2CVPP/be7nl5vlPus++PytbTTWz0ZbT+xXNljBbwgMCLhiJdZwBMZlhNtz9VNHnGzHhB1vq0wyIxaMPEPlN4ORt2C1I2ZM="
+  # ^^ CC_TEST_REPORTER_ID
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+after_script:
+  - ./cc-test-reporter format-coverage target/site/jacoco/jacoco.xml --input-type jacoco
+  - ./cc-test-reporter upload-coverage

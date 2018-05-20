@@ -1,4 +1,4 @@
-# JUnit Time Limits [![Build Status](https://travis-ci.com/Danny02/junit-timelimit-extension.svg?branch=master)](https://travis-ci.com/Danny02/junit-timelimit-extension)
+# JUnit Time Limits [![Build Status](https://travis-ci.com/Danny02/junit-timelimit-extension.svg?branch=master)](https://travis-ci.com/Danny02/junit-timelimit-extension) [![Test Coverage](https://api.codeclimate.com/v1/badges/39d3af77356397728dfd/test_coverage)](https://codeclimate.com/github/Danny02/junit-timelimit-extension/test_coverage)
 
 It is common to categorize unit test by how quickly they execute. This for example 
 enables enables one to execute only test which run in a very short amount of time.
