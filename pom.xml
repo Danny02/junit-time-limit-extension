@@ -9,8 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.release>9</maven.compiler.release>
 
         <junit-jupiter.version>5.2.0</junit-jupiter.version>
         <junit-platform.version>1.2.0</junit-platform.version>
@@ -23,14 +24,21 @@
             <version>${junit-jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-commons</artifactId>
             <version>${junit-platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>${junit-platform.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -51,6 +59,28 @@
                         <version>${junit-jupiter.version}</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <argLine>--add-opens junit.timelimit/com.github.danny02.extension=org.junit.platform.commons</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <failOnWarning>true</failOnWarning>
+                    <outputXML>true</outputXML>
+                </configuration>
             </plugin>
         </plugins>
     </build>
