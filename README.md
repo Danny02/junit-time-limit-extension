@@ -1,4 +1,4 @@
-# JUnit Time Limits
+# JUnit Time Limits [![Build Status](https://travis-ci.com/Danny02/junit-timelimit-extension.svg?branch=master)](https://travis-ci.com/Danny02/junit-timelimit-extension)
 
 It is common to categorize unit test by how quickly they execute. This for example 
 enables enables one to execute only test which run in a very short amount of time.
